@@ -2,13 +2,13 @@ import uuid from "react-uuid";
 
 export default function homeController() {
     /*
-    {
+    [
         {
             "id":"1"
             "Name":"Bier",
             "count":"1"
         }
-    }
+    ]
      */
     let items = []
 
