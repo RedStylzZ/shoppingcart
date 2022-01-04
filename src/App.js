@@ -1,42 +1,23 @@
 import './App.css';
-import React, {useState} from "react";
-import Items from './Items.js'
+import React from "react";
+import Home from "./pages/Home";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import ChangeItem from "./pages/ChangeItem";
+import NavBar from "./components/NavBar";
+import homeController from "./controller/HomeController";
 
 function App() {
-    let itemInput = React.createRef()
-    const [items, setItems] = useState([])
-
-    const clickHandler = () => {
-        if (itemInput.current.value) {
-            setItems([...items, itemInput.current.value])
-            itemInput.current.value = "";
-        }
-    }
-
-    const removeItem = (item) => {
-        console.log(item)
-        setItems(items.filter((i) => i !== item))
-    }
+    const hController = homeController()
 
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>Einkaufsliste</h1>
-                <div>
-                    <input type={"textarea"} ref={itemInput} onKeyPress={(e) => {
-                        if (e.key === "Enter") {
-                            clickHandler()
-                        }
-                        return null;
-                    }}/>
-                    <input type={"button"} value={"Senden"} onClick={() => clickHandler()}/>
-                </div>
-                <div className={"Outer"}>
-                    <div className={"Inner"}>
-                        <Items items={items} remove={removeItem}/>
-                    </div>
-                </div>
-            </header>
+            <BrowserRouter>
+                <NavBar/>
+                <Routes>
+                    <Route path={"/"} element={<Home controller={hController}/>}/>
+                    <Route path={"/change/:uuid"} element={<ChangeItem controller={hController}/>}/>
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }

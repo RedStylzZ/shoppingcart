@@ -1,15 +1,20 @@
-function ItemCard({item, remove}) {
-    console.log(item)
+import {Link} from "react-router-dom";
+
+function ItemCard({item, add, remove}) {
+    const name = `${item.count}x ${item.name}`
     return (
         <div className={"Item"} itemID={item}>
-            <h2>{item}</h2>
+            <h2>{name}</h2>
             <div className={"ItemActions"}>
                 <input type={"button"} value={"Add"} onClick={() => {
-                    console.log("Add:", item)
+                    add(item)
                 }}/>
                 <input type={"button"} value={"Remove"} onClick={() => {
                     remove(item)
                 }}/>
+                <Link to={`/change/${item.id}`}>
+                    <input type={"button"} value={"Change"}/>
+                </Link>
             </div>
         </div>
     );
