@@ -1,4 +1,6 @@
-export default function HomeController() {
+import {type} from "@testing-library/user-event/dist/type";
+
+export default function homeController() {
     /*
     [
         {
@@ -10,7 +12,7 @@ export default function HomeController() {
      */
     const STORAGE_KEY = 'shopping_cart'
     const re = new RegExp(/\s/g)
-    let items = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+    let items = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}
 
     const setItems = (value) => {
         items = value
