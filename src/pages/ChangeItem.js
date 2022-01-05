@@ -1,15 +1,12 @@
 import {useParams, useNavigate} from "react-router-dom";
-import {useState} from "react";
 
-export default function ChangeItem(props) {
-    const {controller} = props
+export default function ChangeItem({controller}) {
     const params = useParams()
     const navigate = useNavigate()
-    const [name, setName] = useState(controller.getItemByUUID(params.uuid))
+    const name = params.name
 
     const changeItem = (event) => {
-        controller.changeItem(params.uuid, event.target.elements[0].value)
-        setName(controller.getItemByUUID(params.uuid))
+        controller.changeItem(params.name, event.target.elements[0].value)
         event.preventDefault()
         navigate("/")
     }

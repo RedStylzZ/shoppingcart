@@ -15,7 +15,7 @@ function App() {
                 <NavBar/>
                 <Routes>
                     <Route path={"/"} element={<Home controller={hController}/>}/>
-                    <Route path={"/change/:uuid"} element={<ChangeItem controller={hController}/>}/>
+                    <Route path={"/change/:name"} element={<ChangeItem controller={hController}/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

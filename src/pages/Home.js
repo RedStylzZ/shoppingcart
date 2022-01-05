@@ -16,16 +16,12 @@ export default function Home(props) {
             event.target.elements[0].value = ""
             event.preventDefault()
         } else {
-            setItems(controller.addItem(event.name))
+            setItems(controller.addItem(event[0]))
         }
     }
 
-    // const countUpItem = (item) => {
-    //     setItems(controller.addItem(item))
-    // }
-
     const removeItem = (item) => {
-        setItems(controller.removeItem(item))
+        setItems(controller.removeItem(item[0]))
     }
 
     return (

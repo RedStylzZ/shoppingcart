@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
 function ItemCard({item, add, remove}) {
-    const name = `${item.count}x ${item.name}`
+    const name = `${item[1].count}x ${item[0]}`
     return (
         <div className={"Item"} itemID={item}>
             <h2>{name}</h2>
@@ -12,7 +12,7 @@ function ItemCard({item, add, remove}) {
                 <input type={"button"} value={"Remove"} onClick={() => {
                     remove(item)
                 }}/>
-                <Link to={`/change/${item.id}`}>
+                <Link to={`/change/${item[0]}`}>
                     <input type={"button"} value={"Change"}/>
                 </Link>
             </div>
