@@ -4,10 +4,10 @@ import Home from "./pages/Home";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ChangeItem from "./pages/ChangeItem";
 import NavBar from "./components/NavBar";
-import homeController from "./controller/HomeController";
+import HomeController from "./controller/HomeController";
 
 function App() {
-    const hController = homeController()
+    const hController = HomeController()
 
     return (
         <div className="App">

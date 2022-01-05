@@ -1,6 +1,7 @@
 import uuid from "react-uuid";
+import {useEffect} from "react";
 
-export default function homeController() {
+export default function HomeController() {
     /*
     [
         {
@@ -10,18 +11,28 @@ export default function homeController() {
         }
     ]
      */
-    let items = []
+    const STORAGE_KEY = 'shopping_cart'
+    let [items, setItems] = localStorage.getItem(STORAGE_KEY) || []
+
+    useEffect(() => {
+        console.log("Set")
+        localStorage.setItem(STORAGE_KEY, items)
+    }, [items])
 
     return {
         getItems: () => [...items],
         getItemByUUID: (uuid) => items.filter((item) => item.id === uuid)[0].name,
 
         addItem: (newItem) => {
+            // Return if UUID is already in the array, but the name is different
             if (items.filter((item) => item.id === uuid && item.name !== newItem).length > 0) return [...items]
 
+            // Check the current item count
             const itemCount = items.filter((item) => item.name === newItem).length + 1
+            // Increase the item count if the item is already in the array
             if (itemCount > 1) {
                 items.filter((item) => item.name === newItem).map((item) => item.count++)
+            // Add new Item to array
             } else {
                 const newItemObj = {id: uuid(), name: newItem, count: itemCount}
                 items = [...items, newItemObj]
