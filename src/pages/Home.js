@@ -1,6 +1,6 @@
 import Items from "../components/Items";
 import React, {useState} from "react";
-import './Home.css';
+import '../styles/Home.scss';
 
 export default function Home(props) {
     const {controller} = props
